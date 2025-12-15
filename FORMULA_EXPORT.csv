@@ -1,0 +1,1034 @@
+Sheet,Cell,Formula_Text,Value
+Budget,C2,=SUM(B2:B10),"$2,853"
+Budget,B11,=SUM(B2:B10),"$2,853"
+Paychecks,N4,=SUM(B2:B33),"$23,916.21"
+Paychecks,O4,=SUM(C2:C33),"$18,922.65"
+Paychecks,P4,=SUM(D2:D33),1386.75
+Paychecks,N6,=AVERAGE(B2:B33),$797.21
+Paychecks,O6,=AVERAGE(C2:C33),$630.76
+Paychecks,P6,=AVERAGE(D2:D33),46.23
+Paychecks,Q30,=SUM(F9:F33),"$7,790.79"
+Paychecks,R30,=SUM(G9:G33),268
+Paychecks,S30,=SUM(H9:H33),$650.25
+Paychecks,T30,=SUM(I9:I33),"$1,921.94"
+Paychecks,Q32,=AVERAGE(F9:F33),$338.73
+Paychecks,R32,=AVERAGE(G9:G33),12
+Paychecks,S32,=AVERAGE(H9:H33),$28.27
+Paychecks,T32,=AVERAGE(I9:I33),$83.56
+Income,C2,=SUM(Paychecks!C2:C3),"$1,268.58"
+Income,F2,=SUM(C2:C9),"$18,922.65"
+Income,H2,=TODAY(),12/15/2025
+Income,C3,=SUM(Paychecks!C4:C7),"$2,162.97"
+Income,F3,"=IFERROR(
+  AVERAGE(
+    FILTER(C2:C9, (C2:C9>=1) * (B2:B9>=DATE(2025,5,1)) * (B2:B9<=TODAY()))
+  ),
+""No data yet"")","$2,526.74"
+Income,C4,=SUM(Paychecks!C8:C11),"$2,426.62"
+Income,F4,"=IFERROR(
+   AVERAGE(
+     FILTER(
+       C2:C9,
+       B2:B9 <= EOMONTH(H2, 0),
+       B2:B9 >= EOMONTH(H2, -2)
+     )
+   ),
+   ""Need more data""
+)","$2,308.76"
+Income,I4,"=FILTER(A2:A9, (B2:B9 <= EOMONTH(H2, 0)) * (B2:B9 >= EOMONTH(H2, -2)))",October
+Income,C5,=SUM(Paychecks!C12:C16),"$3,516.19"
+Income,C6,=SUM(Paychecks!C17:C20),"$2,622.00"
+Income,C7,=SUM(Paychecks!C21:C25),"$3,151.65"
+Income,C8,=SUM(Paychecks!C26:C29),"$2,539.15"
+Income,C9,=SUM(Paychecks!C30:C33),"$1,235.49"
+Raw_Pay,A2,=ARRAYFORMULA(Paychecks!A2:K),05/23/2025
+Raw_Pay,L2,"=ARRAYFORMULA(
+  IF(
+    A2:A="""",
+    ,
+    {
+      YEAR(A2:A)&""-W""&WEEKNUM(A2:A,2),
+      TEXT(A2:A,""yyyy-mm""),
+      TEXT(A2:A,""yyyy"")&""-Q""&ROUNDUP(MONTH(A2:A)/3,0),
+      YEAR(A2:A),
+      IF(I2:I>0,""✅"",""❌""),
+      IF(A2:A<>"""","""", """")
+    }
+  )
+)",2025-W21
+Raw_Pay,R2,"=ARRAYFORMULA(
+  IF(
+    (D2:D="""") + (G2:G=""""),
+    ,
+    ROUND(D2:D / G2:G, 2)
+  )
+)",
+Raw_Pay,S2,"=ARRAYFORMULA(
+  IF(
+    (D2:D="""") + (G2:G=""""),
+    ,
+    ROUND((D2:D / G2:G) * 60, 1)
+  )
+)",
+Raw_Pay,T8,"=ROUND(AVERAGE(B4:B7),0)",$646.00
+Raw_Pay,U8,"=ROUND(AVERAGE(C4:C7),0)",$541.00
+Raw_Pay,T9,"=ROUND(AVERAGE(B5:B8),0)",$662.00
+Raw_Pay,U9,"=ROUND(AVERAGE(C5:C8),0)",$552.00
+Raw_Pay,T10,"=ROUND(AVERAGE(B6:B9),0)",$717.00
+Raw_Pay,U10,"=ROUND(AVERAGE(C6:C9),0)",$594.00
+Raw_Pay,T11,"=ROUND(AVERAGE(B7:B10),0)",$735.00
+Raw_Pay,U11,"=ROUND(AVERAGE(C7:C10),0)",$608.00
+Raw_Pay,T12,"=ROUND(AVERAGE(B8:B11),0)",$733.00
+Raw_Pay,U12,"=ROUND(AVERAGE(C8:C11),0)",$607.00
+Raw_Pay,T13,"=ROUND(AVERAGE(B9:B12),0)",$797.00
+Raw_Pay,U13,"=ROUND(AVERAGE(C9:C12),0)",$655.00
+Raw_Pay,T14,"=ROUND(AVERAGE(B10:B13),0)",$858.00
+Raw_Pay,U14,"=ROUND(AVERAGE(C10:C13),0)",$702.00
+Raw_Pay,T15,"=ROUND(AVERAGE(B11:B14),0)",$780.00
+Raw_Pay,U15,"=ROUND(AVERAGE(C11:C14),0)",$632.00
+Raw_Pay,T16,"=ROUND(AVERAGE(B12:B15),0)",$861.00
+Raw_Pay,U16,"=ROUND(AVERAGE(C12:C15),0)",$683.00
+Raw_Pay,T17,"=ROUND(AVERAGE(B13:B16),0)",$872.00
+Raw_Pay,U17,"=ROUND(AVERAGE(C13:C16),0)",$681.00
+Raw_Pay,T18,"=ROUND(AVERAGE(B14:B17),0)",$872.00
+Raw_Pay,U18,"=ROUND(AVERAGE(C14:C17),0)",$671.00
+Raw_Pay,T19,"=ROUND(AVERAGE(B15:B18),0)",$960.00
+Raw_Pay,U19,"=ROUND(AVERAGE(C15:C18),0)",$738.00
+Raw_Pay,T20,"=ROUND(AVERAGE(B16:B19),0)",$858.00
+Raw_Pay,U20,"=ROUND(AVERAGE(C16:C19),0)",$660.00
+Raw_Pay,T21,"=ROUND(AVERAGE(B17:B20),0)",$852.00
+Raw_Pay,U21,"=ROUND(AVERAGE(C17:C20),0)",$656.00
+Raw_Pay,T22,"=ROUND(AVERAGE(B18:B21),0)",$778.00
+Raw_Pay,U22,"=ROUND(AVERAGE(C18:C21),0)",$599.00
+Raw_Pay,T23,"=ROUND(AVERAGE(B19:B22),0)",$796.00
+Raw_Pay,U23,"=ROUND(AVERAGE(C19:C22),0)",$613.00
+Raw_Pay,T24,"=ROUND(AVERAGE(B20:B23),0)",$869.00
+Raw_Pay,U24,"=ROUND(AVERAGE(C20:C23),0)",$669.00
+Raw_Pay,T25,"=ROUND(AVERAGE(B21:B24),0)",$870.00
+Raw_Pay,U25,"=ROUND(AVERAGE(C21:C24),0)",$670.00
+Raw_Pay,T26,"=ROUND(AVERAGE(B22:B25),0)",$853.00
+Raw_Pay,U26,"=ROUND(AVERAGE(C22:C25),0)",$656.00
+Raw_Pay,T27,"=ROUND(AVERAGE(B23:B26),0)",$793.00
+Raw_Pay,U27,"=ROUND(AVERAGE(C23:C26),0)",$611.00
+Raw_Pay,T28,"=ROUND(AVERAGE(B24:B27),0)",$784.00
+Raw_Pay,U28,"=ROUND(AVERAGE(C24:C27),0)",$604.00
+Budget_Plan,A2,=ARRAYFORMULA(Budget!A2:B),Rent
+Scorecard,A1,"=QUERY(
+  Raw_Pay!A:H,
+  ""select A, C, D, G, F where A is not null order by A asc"",
+  1
+)",date
+Scorecard,F2,"=ARRAYFORMULA(
+  IF(A2:A="""","""",IFERROR(E2:E/D2:D,""""))
+)",
+Scorecard,G2,"=ARRAYFORMULA(
+  IF(A2:A="""","""",IFERROR((C2:C/D2:D)*60,""""))
+)",
+Scorecard,H2,"=LET(v, F2, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,I2,"=LET(v, C2, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",67
+Scorecard,J2,"=LET(v, G2, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K2,"=LET(v, B2, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",69
+Scorecard,L2,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H2*wAddon + I2*wHours + J2*wTime + K2*wTake,
+  ROUND(total, 0)
+)",34
+Scorecard,M2,"=IF(L2>=80,""✅ Excellent"",
+   IF(L2>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N2,=DATEVALUE(A2),5/23/2025
+Scorecard,O2,"=INDEX(Scorecard!F2:F, MATCH(MAX(Scorecard!A2:A), Scorecard!A2:A, 0))",
+Scorecard,H3,"=LET(v, F3, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,I3,"=LET(v, C3, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",54
+Scorecard,J3,"=LET(v, G3, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K3,"=LET(v, B3, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",72
+Scorecard,L3,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H3*wAddon + I3*wHours + J3*wTime + K3*wTake,
+  ROUND(total, 0)
+)",32
+Scorecard,M3,"=IF(L3>=80,""✅ Excellent"",
+   IF(L3>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N3,=DATEVALUE(A3),5/30/2025
+Scorecard,H4,"=LET(v, F4, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I4,"=LET(v, C4, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",92
+Scorecard,J4,"=LET(v, G4, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",72
+Scorecard,K4,"=LET(v, B4, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",61
+Scorecard,L4,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H4*wAddon + I4*wHours + J4*wTime + K4*wTake,
+  ROUND(total, 0)
+)",81
+Scorecard,M4,"=IF(L4>=80,""✅ Excellent"",
+   IF(L4>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N4,=DATEVALUE(A4),6/6/2025
+Scorecard,H5,"=LET(v, F5, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I5,"=LET(v, C5, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",4
+Scorecard,J5,"=LET(v, G5, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",98
+Scorecard,K5,"=LET(v, B5, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",49
+Scorecard,L5,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H5*wAddon + I5*wHours + J5*wTime + K5*wTake,
+  ROUND(total, 0)
+)",63
+Scorecard,M5,"=IF(L5>=80,""✅ Excellent"",
+   IF(L5>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N5,=DATEVALUE(A5),6/13/2025
+Scorecard,H6,"=LET(v, F6, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I6,"=LET(v, C6, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",81
+Scorecard,J6,"=LET(v, G6, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",74
+Scorecard,K6,"=LET(v, B6, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",66
+Scorecard,L6,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H6*wAddon + I6*wHours + J6*wTime + K6*wTake,
+  ROUND(total, 0)
+)",80
+Scorecard,M6,"=IF(L6>=80,""✅ Excellent"",
+   IF(L6>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N6,=DATEVALUE(A6),6/20/2025
+Scorecard,H7,"=LET(v, F7, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I7,"=LET(v, C7, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",98
+Scorecard,J7,"=LET(v, G7, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",50
+Scorecard,K7,"=LET(v, B7, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",64
+Scorecard,L7,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H7*wAddon + I7*wHours + J7*wTime + K7*wTake,
+  ROUND(total, 0)
+)",78
+Scorecard,M7,"=IF(L7>=80,""✅ Excellent"",
+   IF(L7>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N7,=DATEVALUE(A7),6/27/2025
+Scorecard,H8,"=LET(v, F8, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I8,"=LET(v, C8, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",81
+Scorecard,J8,"=LET(v, G8, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",81
+Scorecard,K8,"=LET(v, B8, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",66
+Scorecard,L8,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H8*wAddon + I8*wHours + J8*wTime + K8*wTake,
+  ROUND(total, 0)
+)",82
+Scorecard,M8,"=IF(L8>=80,""✅ Excellent"",
+   IF(L8>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N8,=DATEVALUE(A8),7/4/2025
+Scorecard,H9,"=LET(v, F9, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",14
+Scorecard,I9,"=LET(v, C9, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",77
+Scorecard,J9,"=LET(v, G9, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",22
+Scorecard,K9,"=LET(v, B9, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",67
+Scorecard,L9,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H9*wAddon + I9*wHours + J9*wTime + K9*wTake,
+  ROUND(total, 0)
+)",45
+Scorecard,M9,"=IF(L9>=80,""✅ Excellent"",
+   IF(L9>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N9,=DATEVALUE(A9),7/11/2025
+Scorecard,H10,"=LET(v, F10, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I10,"=LET(v, C10, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",92
+Scorecard,J10,"=LET(v, G10, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K10,"=LET(v, B10, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",72
+Scorecard,L10,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H10*wAddon + I10*wHours + J10*wTime + K10*wTake,
+  ROUND(total, 0)
+)",66
+Scorecard,M10,"=IF(L10>=80,""✅ Excellent"",
+   IF(L10>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N10,=DATEVALUE(A10),7/18/2025
+Scorecard,H11,"=LET(v, F11, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",44
+Scorecard,I11,"=LET(v, C11, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",48
+Scorecard,J11,"=LET(v, G11, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",88
+Scorecard,K11,"=LET(v, B11, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",64
+Scorecard,L11,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H11*wAddon + I11*wHours + J11*wTime + K11*wTake,
+  ROUND(total, 0)
+)",61
+Scorecard,M11,"=IF(L11>=80,""✅ Excellent"",
+   IF(L11>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N11,=DATEVALUE(A11),7/25/2025
+Scorecard,H12,"=LET(v, F12, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I12,"=LET(v, C12, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",90
+Scorecard,J12,"=LET(v, G12, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",82
+Scorecard,K12,"=LET(v, B12, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",88
+Scorecard,L12,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H12*wAddon + I12*wHours + J12*wTime + K12*wTake,
+  ROUND(total, 0)
+)",90
+Scorecard,M12,"=IF(L12>=80,""✅ Excellent"",
+   IF(L12>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N12,=DATEVALUE(A12),8/1/2025
+Scorecard,H13,"=LET(v, F13, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I13,"=LET(v, C13, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",71
+Scorecard,J13,"=LET(v, G13, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K13,"=LET(v, B13, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",88
+Scorecard,L13,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H13*wAddon + I13*wHours + J13*wTime + K13*wTake,
+  ROUND(total, 0)
+)",65
+Scorecard,M13,"=IF(L13>=80,""✅ Excellent"",
+   IF(L13>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N13,=DATEVALUE(A13),8/8/2025
+Scorecard,H14,"=LET(v, F14, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",70
+Scorecard,I14,"=LET(v, C14, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,J14,"=LET(v, G14, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K14,"=LET(v, B14, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",41
+Scorecard,L14,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H14*wAddon + I14*wHours + J14*wTime + K14*wTake,
+  ROUND(total, 0)
+)",28
+Scorecard,M14,"=IF(L14>=80,""✅ Excellent"",
+   IF(L14>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N14,=DATEVALUE(A14),8/15/2025
+Scorecard,H15,"=LET(v, F15, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",57
+Scorecard,I15,"=LET(v, C15, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",42
+Scorecard,J15,"=LET(v, G15, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",40
+Scorecard,K15,"=LET(v, B15, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",87
+Scorecard,L15,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H15*wAddon + I15*wHours + J15*wTime + K15*wTake,
+  ROUND(total, 0)
+)",57
+Scorecard,M15,"=IF(L15>=80,""✅ Excellent"",
+   IF(L15>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N15,=DATEVALUE(A15),8/22/2025
+Scorecard,H16,"=LET(v, F16, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I16,"=LET(v, C16, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",63
+Scorecard,J16,"=LET(v, G16, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K16,"=LET(v, B16, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",87
+Scorecard,L16,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H16*wAddon + I16*wHours + J16*wTime + K16*wTake,
+  ROUND(total, 0)
+)",63
+Scorecard,M16,"=IF(L16>=80,""✅ Excellent"",
+   IF(L16>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N16,=DATEVALUE(A16),8/29/2025
+Scorecard,H17,"=LET(v, F17, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I17,"=LET(v, C17, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",83
+Scorecard,J17,"=LET(v, G17, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",17
+Scorecard,K17,"=LET(v, B17, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",83
+Scorecard,L17,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H17*wAddon + I17*wHours + J17*wTime + K17*wTake,
+  ROUND(total, 0)
+)",71
+Scorecard,M17,"=IF(L17>=80,""✅ Excellent"",
+   IF(L17>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N17,=DATEVALUE(A17),9/5/2025
+Scorecard,H18,"=LET(v, F18, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",26
+Scorecard,I18,"=LET(v, C18, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",79
+Scorecard,J18,"=LET(v, G18, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K18,"=LET(v, B18, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",71
+Scorecard,L18,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H18*wAddon + I18*wHours + J18*wTime + K18*wTake,
+  ROUND(total, 0)
+)",44
+Scorecard,M18,"=IF(L18>=80,""✅ Excellent"",
+   IF(L18>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N18,=DATEVALUE(A18),9/12/2025
+Scorecard,H19,"=LET(v, F19, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",26
+Scorecard,I19,"=LET(v, C19, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",23
+Scorecard,J19,"=LET(v, G19, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",46
+Scorecard,K19,"=LET(v, B19, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",52
+Scorecard,L19,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H19*wAddon + I19*wHours + J19*wTime + K19*wTake,
+  ROUND(total, 0)
+)",37
+Scorecard,M19,"=IF(L19>=80,""✅ Excellent"",
+   IF(L19>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N19,=DATEVALUE(A19),9/19/2025
+Scorecard,H20,"=LET(v, F20, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I20,"=LET(v, C20, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",81
+Scorecard,J20,"=LET(v, G20, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",98
+Scorecard,K20,"=LET(v, B20, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",85
+Scorecard,L20,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H20*wAddon + I20*wHours + J20*wTime + K20*wTake,
+  ROUND(total, 0)
+)",91
+Scorecard,M20,"=IF(L20>=80,""✅ Excellent"",
+   IF(L20>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N20,=DATEVALUE(A20),9/26/2025
+Scorecard,H21,"=LET(v, F21, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I21,"=LET(v, C21, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",6
+Scorecard,J21,"=LET(v, G21, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",99
+Scorecard,K21,"=LET(v, B21, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",58
+Scorecard,L21,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H21*wAddon + I21*wHours + J21*wTime + K21*wTake,
+  ROUND(total, 0)
+)",66
+Scorecard,M21,"=IF(L21>=80,""✅ Excellent"",
+   IF(L21>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N21,=DATEVALUE(A21),10/3/2025
+Scorecard,H22,"=LET(v, F22, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",80
+Scorecard,I22,"=LET(v, C22, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",94
+Scorecard,J22,"=LET(v, G22, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",92
+Scorecard,K22,"=LET(v, B22, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",78
+Scorecard,L22,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H22*wAddon + I22*wHours + J22*wTime + K22*wTake,
+  ROUND(total, 0)
+)",86
+Scorecard,M22,"=IF(L22>=80,""✅ Excellent"",
+   IF(L22>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N22,=DATEVALUE(A22),10/10/2025
+Scorecard,H23,"=LET(v, F23, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I23,"=LET(v, C23, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",69
+Scorecard,J23,"=LET(v, G23, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",65
+Scorecard,K23,"=LET(v, B23, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",76
+Scorecard,L23,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H23*wAddon + I23*wHours + J23*wTime + K23*wTake,
+  ROUND(total, 0)
+)",78
+Scorecard,M23,"=IF(L23>=80,""✅ Excellent"",
+   IF(L23>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N23,=DATEVALUE(A23),10/17/2025
+Scorecard,H24,"=LET(v, F24, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",82
+Scorecard,I24,"=LET(v, C24, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",65
+Scorecard,J24,"=LET(v, G24, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",93
+Scorecard,K24,"=LET(v, B24, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",85
+Scorecard,L24,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H24*wAddon + I24*wHours + J24*wTime + K24*wTake,
+  ROUND(total, 0)
+)",81
+Scorecard,M24,"=IF(L24>=80,""✅ Excellent"",
+   IF(L24>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",✅ Excellent
+Scorecard,N24,=DATEVALUE(A24),10/24/2025
+Scorecard,H25,"=LET(v, F25, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,I25,"=LET(v, C25, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",38
+Scorecard,J25,"=LET(v, G25, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K25,"=LET(v, B25, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",53
+Scorecard,L25,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H25*wAddon + I25*wHours + J25*wTime + K25*wTake,
+  ROUND(total, 0)
+)",23
+Scorecard,M25,"=IF(L25>=80,""✅ Excellent"",
+   IF(L25>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N25,=DATEVALUE(A25),10/31/2025
+Scorecard,H26,"=LET(v, F26, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",23
+Scorecard,I26,"=LET(v, C26, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",54
+Scorecard,J26,"=LET(v, G26, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K26,"=LET(v, B26, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",58
+Scorecard,L26,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H26*wAddon + I26*wHours + J26*wTime + K26*wTake,
+  ROUND(total, 0)
+)",34
+Scorecard,M26,"=IF(L26>=80,""✅ Excellent"",
+   IF(L26>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N26,=DATEVALUE(A26),11/7/2025
+Scorecard,H27,"=LET(v, F27, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",65
+Scorecard,I27,"=LET(v, C27, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",98
+Scorecard,J27,"=LET(v, G27, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",31
+Scorecard,K27,"=LET(v, B27, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",73
+Scorecard,L27,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H27*wAddon + I27*wHours + J27*wTime + K27*wTake,
+  ROUND(total, 0)
+)",67
+Scorecard,M27,"=IF(L27>=80,""✅ Excellent"",
+   IF(L27>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N27,=DATEVALUE(A27),11/14/2025
+Scorecard,H28,"=LET(v, F28, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",63
+Scorecard,I28,"=LET(v, C28, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",69
+Scorecard,J28,"=LET(v, G28, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",83
+Scorecard,K28,"=LET(v, B28, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",66
+Scorecard,L28,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H28*wAddon + I28*wHours + J28*wTime + K28*wTake,
+  ROUND(total, 0)
+)",70
+Scorecard,M28,"=IF(L28>=80,""✅ Excellent"",
+   IF(L28>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N28,=DATEVALUE(A28),11/21/2025
+Scorecard,H29,"=LET(v, F29, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",76
+Scorecard,I29,"=LET(v, C29, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",65
+Scorecard,J29,"=LET(v, G29, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",74
+Scorecard,K29,"=LET(v, B29, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",85
+Scorecard,L29,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H29*wAddon + I29*wHours + J29*wTime + K29*wTake,
+  ROUND(total, 0)
+)",75
+Scorecard,M29,"=IF(L29>=80,""✅ Excellent"",
+   IF(L29>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N29,=DATEVALUE(A29),11/28/2025
+Scorecard,H30,"=LET(v, F30, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",74
+Scorecard,I30,"=LET(v, C30, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",71
+Scorecard,J30,"=LET(v, G30, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",85
+Scorecard,K30,"=LET(v, B30, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",69
+Scorecard,L30,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H30*wAddon + I30*wHours + J30*wTime + K30*wTake,
+  ROUND(total, 0)
+)",75
+Scorecard,M30,"=IF(L30>=80,""✅ Excellent"",
+   IF(L30>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N30,=DATEVALUE(A30),12/5/2025
+Scorecard,H31,"=LET(v, F31, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",100
+Scorecard,I31,"=LET(v, C31, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",54
+Scorecard,J31,"=LET(v, G31, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",94
+Scorecard,K31,"=LET(v, B31, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",68
+Scorecard,L31,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H31*wAddon + I31*wHours + J31*wTime + K31*wTake,
+  ROUND(total, 0)
+)",79
+Scorecard,M31,"=IF(L31>=80,""✅ Excellent"",
+   IF(L31>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",⚠️ Needs Attention
+Scorecard,N31,=DATEVALUE(A31),12/12/2025
+Scorecard,H32,"=LET(v, F32, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,I32,"=LET(v, C32, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,J32,"=LET(v, G32, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K32,"=LET(v, B32, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,L32,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H32*wAddon + I32*wHours + J32*wTime + K32*wTake,
+  ROUND(total, 0)
+)",0
+Scorecard,M32,"=IF(L32>=80,""✅ Excellent"",
+   IF(L32>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N32,=DATEVALUE(A32),12/19/2025
+Scorecard,H33,"=LET(v, F33, goal, GOAL_ADDON_STOP,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,I33,"=LET(v, C33, goal, GOAL_WEEKLY_HOURS, band, BAND_HOURS,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,J33,"=LET(v, G33, goal, GOAL_TIME_PER_STOP_MIN, band, BAND_TIME_MIN,
+     IF(band=0, IF(v=goal,100,0),
+        ROUND(MAX(0, 100 - (ABS(v-goal)/band)*100),0)))",0
+Scorecard,K33,"=LET(v, B33, goal, GOAL_TAKE_HOME,
+     IFERROR(ROUND(100*MIN(1, v/goal),0),))",0
+Scorecard,L33,"=LET(
+  wAddon, W_ADDON,
+  wHours, W_HOURS,
+  wTime, W_TIME,
+  wTake, W_TAKEHOME,
+  total, H33*wAddon + I33*wHours + J33*wTime + K33*wTake,
+  ROUND(total, 0)
+)",0
+Scorecard,M33,"=IF(L33>=80,""✅ Excellent"",
+   IF(L33>=60,""⚠️ Needs Attention"",
+   ""❌ Critical""))",❌ Critical
+Scorecard,N33,=DATEVALUE(A33),12/26/2025
+Derived,A1,"=QUERY(
+  rng_pay,
+  ""select Col13, sum(Col2), sum(Col3)
+   where Col2 is not null
+   group by Col13
+   order by Col13
+   label Col13 'month_id', sum(Col2) 'gross_income', sum(Col3) 'take_home'"",
+  1
+)",month_id
+Derived,J1,"=QUERY(
+  Raw_Pay!A:Q,
+  ""select N, sum(B), sum(C), sum(D), avg(J)
+   where B is not null
+   group by N
+   order by N
+   label N 'month_id',
+         sum(B) 'gross_income',
+         sum(C) 'take_home',
+         sum(D) 'hours',
+         avg(J) 'avg_hour_rate'"",
+  2
+)",month_id
+Derived,X1,=Raw_Pay!A1,date
+Derived,Y1,=Raw_Pay!J1,effective_hourly_rate
+Derived,D2,"=ARRAYFORMULA(
+ IF(
+   A2:A="""",
+   ,
+   {
+     IF(A2:A<>"""", SUM(Budget!B2:B10), ),
+     IF(A2:A<>"""", C2:C - SUM(Budget!B2:B10), )
+   }
+ )
+)","$2,853.05"
+Derived,Q2,=SUM(Raw_Pay!B2:B),"$23,916.21"
+Derived,T2,"=LET(
+  row, MATCH(MAX(FILTER(Scorecard!A2:A, Scorecard!A2:A <= TODAY())), Scorecard!A2:A, 0),
+  row
+)",30
+Derived,V2,"=LET(
+  d, Paychecks!A2:A,
+  lastDate, MAX(FILTER(INT(d), INT(d) <= TODAY())),
+  ROW(INDEX(d, MATCH(lastDate, INT(d), 0)))
+)",31
+Derived,X2,=Raw_Pay!A2,05/23/2025
+Derived,Y2,=Raw_Pay!J2,
+Derived,Z2,"=ARRAYFORMULA(
+  IF(
+    (Raw_Pay!A2:A="""") + (Raw_Pay!J2:J=""""),
+    ,
+    BYROW(
+      Raw_Pay!A2:A,
+      LAMBDA(eachDate,
+        IF(
+          ISBLANK(eachDate),
+          """",
+          AVERAGE(
+            FILTER(
+              Raw_Pay!J2:J,
+              (Raw_Pay!A2:A<=eachDate) *
+              (Raw_Pay!A2:A>=eachDate-84) *
+              (Raw_Pay!J2:J<>"""")
+            )
+          )
+        )
+      )
+    )
+  )
+)",
+Derived,AA2,"=ARRAYFORMULA(IF(Raw_Pay!A2:A<>"""", TEXT(Raw_Pay!A2:A,""mmm dd""), ))",May 23
+Derived,Q3,=SUM(Raw_Pay!C2:C),"$18,922.65"
+Derived,X3,=Raw_Pay!A3,05/30/2025
+Derived,Y3,=Raw_Pay!J3,
+Derived,Q4,=SUM(Raw_Pay!D2:D),1386.75
+Derived,X4,=Raw_Pay!A4,06/06/2025
+Derived,Y4,=Raw_Pay!J4,$13.00
+Derived,F5,"=ROUND(AVERAGE(B2:B4),0)","$2,100.00"
+Derived,G5,"=ROUND(AVERAGE(C2:C4),0)","$1,745.00"
+Derived,Q5,=AVERAGE(Raw_Pay!J2:J),$16.15
+Derived,X5,=Raw_Pay!A5,06/13/2025
+Derived,Y5,=Raw_Pay!J5,$13.00
+Derived,F6,"=ROUND(AVERAGE(B3:B5),0)","$3,327.00"
+Derived,G6,"=ROUND(AVERAGE(C3:C5),0)","$2,702.00"
+Derived,Q6,=AVERAGE(Raw_Pay!B2:B),$797.21
+Derived,X6,=Raw_Pay!A6,06/20/2025
+Derived,Y6,=Raw_Pay!J6,$13.00
+Derived,F7,"=ROUND(AVERAGE(B4:B6),0)","$3,600.00"
+Derived,G7,"=ROUND(AVERAGE(C4:C6),0)","$2,855.00"
+Derived,Q7,=AVERAGE(Raw_Pay!C2:C),$630.76
+Derived,X7,=Raw_Pay!A7,06/27/2025
+Derived,Y7,=Raw_Pay!J7,$13.00
+Derived,F8,"=ROUND(AVERAGE(B5:B7),0)","$3,987.00"
+Derived,G8,"=ROUND(AVERAGE(C5:C7),0)","$3,097.00"
+Derived,Q8,=AVERAGE(Raw_Pay!D2:D),46.23
+Derived,X8,=Raw_Pay!A8,07/04/2025
+Derived,Y8,=Raw_Pay!J8,$13.75
+Derived,F9,"=ROUND(AVERAGE(B6:B8),0)","$3,598.00"
+Derived,G9,"=ROUND(AVERAGE(C6:C8),0)","$2,771.00"
+Derived,Q9,=Income!F3,"$2,526.74"
+Derived,X9,=Raw_Pay!A9,07/11/2025
+Derived,Y9,=Raw_Pay!J9,$15.29
+Derived,F10,"=ROUND(AVERAGE(B7:B9),0)","$2,998.00"
+Derived,G10,"=ROUND(AVERAGE(C7:C9),0)","$2,309.00"
+Derived,Q10,=Income!F4,"$2,308.76"
+Derived,X10,=Raw_Pay!A10,07/18/2025
+Derived,Y10,=Raw_Pay!J10,$15.69
+Derived,Q11,=Budget_Plan!B11,"$2,853"
+Derived,X11,=Raw_Pay!A11,07/25/2025
+Derived,Y11,=Raw_Pay!J11,$16.14
+Derived,Q12,=AVERAGE(E2:E),-$565.60
+Derived,X12,=Raw_Pay!A12,08/01/2025
+Derived,Y12,=Raw_Pay!J12,$18.10
+Derived,Q13,=J30,"$8,536.77"
+Derived,X13,=Raw_Pay!A13,08/08/2025
+Derived,Y13,=Raw_Pay!J13,$17.08
+Derived,Q14,=J31,$371.16
+Derived,X14,=Raw_Pay!A14,08/15/2025
+Derived,Y14,=Raw_Pay!J14,$15.98
+Derived,Q15,=J32,$30.77
+Derived,X15,=Raw_Pay!A15,08/22/2025
+Derived,Y15,=Raw_Pay!J15,$16.21
+Derived,Q16,=J33,"$1,958.19"
+Derived,X16,=Raw_Pay!A16,08/29/2025
+Derived,Y16,=Raw_Pay!J16,$17.34
+Derived,Q17,=J34,$85.14
+Derived,X17,=Raw_Pay!A17,09/05/2025
+Derived,Y17,=Raw_Pay!J17,$17.77
+Derived,Q18,=J35,8/8/2025
+Derived,X18,=Raw_Pay!A18,09/12/2025
+Derived,Y18,=Raw_Pay!J18,$15.57
+Derived,Q19,=J36,$792.78
+Derived,X19,=Raw_Pay!A19,09/19/2025
+Derived,Y19,=Raw_Pay!J19,$15.57
+Derived,Q20,=J40,4 hrs 12 min
+Derived,X20,=Raw_Pay!A20,09/26/2025
+Derived,Y20,=Raw_Pay!J20,$17.95
+Derived,J21,"=SUM(FILTER(Raw_Pay!B2:B, Raw_Pay!B2:B<>""""))","$23,916.21"
+Derived,Q21,=J38,251.72
+Derived,X21,=Raw_Pay!A21,10/03/2025
+Derived,Y21,=Raw_Pay!J21,$18.55
+Derived,J22,"=SUM(FILTER(Raw_Pay!C2:C, Raw_Pay!C2:C<>""""))","$18,922.65"
+Derived,Q22,=J28,281
+Derived,X22,=Raw_Pay!A22,10/10/2025
+Derived,Y22,=Raw_Pay!J22,$17.07
+Derived,J23,"=SUM(FILTER(Raw_Pay!D2:D, Raw_Pay!D2:D<>""""))",1386.75
+Derived,Q23,=J29,12
+Derived,X23,=Raw_Pay!A23,10/17/2025
+Derived,Y23,=Raw_Pay!J23,$19.26
+Derived,J24,"=AVERAGE(FILTER(Raw_Pay!B2:B, Raw_Pay!B2:B>0))",$797.21
+Derived,X24,=Raw_Pay!A24,10/24/2025
+Derived,Y24,=Raw_Pay!J24,$17.11
+Derived,J25,"=AVERAGE(FILTER(Raw_Pay!C2:C, Raw_Pay!C2:C>0))",$630.76
+Derived,X25,=Raw_Pay!A25,10/31/2025
+Derived,Y25,=Raw_Pay!J25,$15.00
+Derived,J26,"=AVERAGE(FILTER(Raw_Pay!D2:D, Raw_Pay!D2:D>0))",46.23
+Derived,X26,=Raw_Pay!A26,11/07/2025
+Derived,Y26,=Raw_Pay!J26,$15.32
+Derived,J27,"=AVERAGE(FILTER(Raw_Pay!J2:J, Raw_Pay!J2:J>0))",$16.15
+Derived,X27,=Raw_Pay!A27,11/14/2025
+Derived,Y27,=Raw_Pay!J27,$16.36
+Derived,J28,"=SUM(FILTER(Raw_Pay!G8:G, Raw_Pay!G8:G>0))",281
+Derived,X28,=Raw_Pay!A28,11/21/2025
+Derived,Y28,=Raw_Pay!J28,$16.66
+Derived,J29,"=AVERAGE(FILTER(Raw_Pay!G2:G, Raw_Pay!G2:G>0))",12
+Derived,X29,=Raw_Pay!A29,11/28/2025
+Derived,Y29,=Raw_Pay!J29,$17.08
+Derived,J30,"=SUM(FILTER(Raw_Pay!F8:F, Raw_Pay!F8:F>0))","$8,536.77"
+Derived,X30,=Raw_Pay!A30,12/05/2025
+Derived,Y30,=Raw_Pay!J30,$16.94
+Derived,J31,"=AVERAGE(FILTER(Raw_Pay!F8:F, Raw_Pay!F8:F>0))",$371.16
+Derived,X31,=Raw_Pay!A31,12/12/2025
+Derived,Y31,=Raw_Pay!J31,$18.34
+Derived,J32,"=AVERAGE(FILTER(Raw_Pay!H8:H, Raw_Pay!H8:H>0))",$30.77
+Derived,J33,"=SUM(FILTER(Raw_Pay!I8:I, Raw_Pay!I8:I>0))","$1,958.19"
+Derived,J34,"=AVERAGE(FILTER(Raw_Pay!I8:I, Raw_Pay!I8:I>0))",$85.14
+Derived,Q34,"=INDEX(Paychecks!B:B, LATEST_CHECK_ROW)",$791.95
+Derived,J35,"=INDEX(
+  SORT(
+    FILTER({Raw_Pay!A2:A, Raw_Pay!C2:C}, Raw_Pay!C2:C<>""""),
+    2,
+    FALSE
+  ),
+  1,
+  1
+)",8/8/2025
+Derived,Q35,"=INDEX(Paychecks!C:C, LATEST_CHECK_ROW)",$610.12
+Derived,J36,"=INDEX(
+  SORT(
+    FILTER({Raw_Pay!A2:A, Raw_Pay!C2:C}, Raw_Pay!C2:C<>""""),
+    2,
+    FALSE
+  ),
+  1,
+  2
+)",$792.78
+Derived,Q36,"=INDEX(Paychecks!D:D, LATEST_CHECK_ROW)",42.5
+Derived,J37,"=AVERAGE(FILTER(Raw_Pay!R8:R, Raw_Pay!R8:R>0))",4.2
+Derived,Q37,"=INDEX(Paychecks!F:F, LATEST_CHECK_ROW)",$567.58
+Derived,J38,"=AVERAGE(FILTER(Raw_Pay!S8:S, Raw_Pay!S8:S>0))",251.72
+Derived,Q38,"=INDEX(Paychecks!I:I, LATEST_CHECK_ROW)",$141.90
+Derived,J39,"=AVERAGE(FILTER(Raw_Pay!G8:G / Raw_Pay!D8:D, (Raw_Pay!G8:G>0)*(Raw_Pay!D8:D>0)))",0.25
+Derived,Q39,"=INDEX(Paychecks!G:G, LATEST_CHECK_ROW)",13
+Derived,J40,"=INT(kpi_avg_stopmin/60) & "" hrs "" & TEXT(MOD(kpi_avg_stopmin,60),""0"") & "" min""",4 hrs 12 min
