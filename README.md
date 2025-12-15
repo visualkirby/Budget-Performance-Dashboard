@@ -1,31 +1,36 @@
+<!-- ===================== -->
+<!--        COVER          -->
+<!-- ===================== -->
+![Cover](./assets_cover.png)
+
 # 📊 Budget & Work Performance Dashboard  
 *A full analytics system built with Google Sheets, Google Apps Script, and automated KPI logic.*
 
-This project transforms raw weekly paystub data into a complete **financial + work-performance dashboard**, including forecasting, KPI scoring, visual analytics, and structured data pipelines ready for SQL, Tableau, Power BI, or Python.
+This project transforms raw weekly paystub data into a complete **financial + work-performance dashboard**, including forecasting, KPI scoring, visual analytics, and structured data pipelines ready for **SQL, Tableau, Power BI, or Python**.
 
 ---
 
-# 📌 Project Overview
+## 📌 Project Overview
 
 This dashboard combines **personal income tracking**, **monthly budgeting**, and **Stanley Steemer work performance metrics** into one unified analytics system.
 
 It includes:
 
 - Automated **weekly ingestion** of paystub data  
-- **KPI engine** for performance scoring  
+- A **KPI engine** for performance scoring  
 - **Monthly income vs expense** reporting  
 - **Rolling averages** and **4-Pay Forecasting**  
-- **Trend charts** for income, hours, add-ons, commissions  
+- Trend charts for income, hours, add-ons, and commissions  
 - A fully structured data layer designed for **SQL warehousing & BI tools**
 
-📄 **Dashboard PDF Preview:**  
-[Monthly Budget.PDF](./assets/Monthly%20Budget.PDF)
+📄 **Dashboard PDF Preview**  
+👉 [Stanley Steemer Work Performance.PDF](./Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
 
 ---
 
-# 🧩 Features
+## 🧩 Features
 
-### **📅 Personal Finance Metrics**
+### 📅 Personal Finance Metrics
 - Avg Monthly Income  
 - 3-Month Rolling Avg  
 - Total Gross & Take-Home  
@@ -33,35 +38,35 @@ It includes:
 - Monthly Net Income  
 - Category Breakdown (Rent, Groceries, Gas, etc.)
 
-### **🧰 Work Performance Metrics**
+### 🧰 Work Performance Metrics
 - Hours Worked  
 - Stops per Week  
 - Add-On Amounts  
 - Commission Earned  
-- Time per Stop (hrs/min)  
+- Time per Stop (hrs / min)  
 - Effective Hourly Rate  
-- Weekly Scorecard with Color-Coded Performance  
+- Weekly Scorecard with Color-Coded Performance
 
-### **📈 Forecasting & Trends**
+### 📈 Forecasting & Trends
 - 4-Pay Forecast (Gross + Net)  
 - 3-Month Rolling Forecast  
 - Effective Hourly Rate Trend  
-- Add-On Trend  
-- Commission Trend  
-- Avg Time per Stop Trend  
+- Add-On Earnings Trend  
+- Commission Earnings Trend  
+- Avg Time per Stop Trend
 
-### **⚙ Automation Layer**
+### ⚙ Automation Layer
 - Google Apps Script OCR parsing  
-- Data cleaning + URL logs  
+- Data cleaning + processing logs  
 - Weekly processing confirmation  
-- Bonuses/flags  
-- Structured date logic (week_id, month_id, quarter_id, year)
+- Bonus week flags  
+- Structured date logic (`week_id`, `month_id`, `quarter_id`, `year`)
 
 ---
 
-# 🧠 Data Pipeline
+## 🧠 Data Pipeline
 
-### **1️⃣ Input Layer (Raw Pay Data)**
+### 1️⃣ Input Layer (Raw Pay Data)
 From weekly paystubs:
 - Date  
 - Gross Pay  
@@ -73,50 +78,100 @@ From weekly paystubs:
 - Time per Stop  
 - Apps Script log URLs  
 
-### **2️⃣ Processing Layer**
+### 2️⃣ Processing Layer
 Calculates:
 - Add-On per Stop  
 - Effective Hourly Rate  
 - Time per Stop (hr/min)  
 - Weekly Performance KPIs  
-- Forecast Metrics  
-- Rolling Averages  
+- Forecast metrics  
+- Rolling averages  
 
-### **3️⃣ Analytics Layer**
+### 3️⃣ Analytics Layer
 Powers dashboards:
 - Monthly views  
 - Weekly scorecards  
 - Trend charts  
 - Summary KPIs  
-- Variance vs Goals  
+- Variance vs goals  
 
-### **4️⃣ Output Layer**
+### 4️⃣ Output Layer
 - Dashboard PDF  
-- Sample CSV data  
-- Clean structured tables for SQL/BI tools  
+- PNG dashboard visuals  
+- CSV exports  
+- Clean structured tables for SQL / BI tools  
 
 ---
 
-# 🗂 File Structure
+<!-- ===================== -->
+<!--        BANNER         -->
+<!-- ===================== -->
+![Banner](./assets_banner.png)
+
+## 🖼 Dashboard Visuals
+
+| Metric | File |
+|------|------|
+| Gross vs Take-Home | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Gross_vs_Take_Home.png |
+| Monthly Net Income | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Monthly_Net_Income.png |
+| Monthly Forecast | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Monthly_Forecast.png |
+| Add-On Earnings | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Add_On_Earnings_per_Week.png |
+| Commission Trend | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Commission_Earning_per_Week.png |
+| Effective Hourly Rate | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Effective_Hourly_Rate_Trend.png |
+| Weekly Scorecard | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Weekly_Scorecard.png |
+
+---
+
+## 📂 Data Exports
+
+| Dataset | Link |
+|------|------|
+| Raw Pay | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Raw_Pay.csv |
+| Paychecks | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Paychecks.csv |
+| Budget | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Budget.csv |
+| Budget Plan | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Budget_Plan.csv |
+| Income | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Income.csv |
+| Scorecard | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Scorecard.csv |
+| Derived Metrics | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Derived.csv |
+
+---
+
+## 📂 Formulas & Scripts
+
+| File | Link |
+|------|------|
+| Formula Export | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/FORMULA_EXPORT.csv |
+| Apps Script | https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/apps_script%20(1).txt |
+
+---
+
+## 🗂 File Structure
 
 ```txt
 Budget-Performance-Dashboard/
-│
+├── cover.png
 ├── README.md
 ├── assets/
-│   ├── Monthly Budget.PDF
-│   ├── cover.png              # (You will add this later)
-│   ├── banner.png             # (You will add this later)
+│   ├── Stanley Steemer Work Performance.PDF
+│   ├── banner.png
 │   └── charts/
-│       ├── gross_vs_net.png
-│       ├── weekly_scorecard.png
-│       ├── income_trend.png
-│       └── ehr_trend.png
+│       ├── Gross_vs_Take_Home.png
+│       ├── Monthly_Net_Income.png
+│       ├── Monthly_Forecast.png
+│       ├── Add_On_Earnings_per_Week.png
+│       ├── Commission_Earning_per_Week.png
+│       ├── Effective_Hourly_Rate_Trend.png
+│       └── Weekly_Scorecard.png
 │
 ├── data/
-│   ├── sample_pay_data.csv
-│   ├── sample_budget.csv
-│   └── sample_kpi_output.csv
+│   ├── Raw_Pay.csv
+│   ├── Paychecks.csv
+│   ├── Budget.csv
+│   ├── Budget_Plan.csv
+│   ├── Income.csv
+│   ├── Scorecard.csv
+│   ├── Derived.csv
 │
 └── scripts/
-    └── paystub_parser.gs      # Google Apps Script for OCR parsing
+    └── FORMULA_EXPORT.csv
+    ├──  apps_script.txt
