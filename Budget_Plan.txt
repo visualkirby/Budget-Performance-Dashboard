@@ -1,0 +1,11 @@
+category,amount_monthly ,fixed_or_variable,notes
+Rent,"$1,050",Fixed,Apartment Rent
+Electricity ,$150,Variable,Utility Bill
+Cable,$150,Variable,Internet + TV
+Groceries,$300,Variable,Monthly Food Spending
+Gas,$200,Variable,Car Fuel
+Phone ,$150,Fixed,Cell Pone
+Car Insurance,$271,Fixed,Auto Insurance
+Cigarettes,$200,Variable,Discretionary
+Car,$382,Variable,Miscellaneous Spending
+Totals,"$2,853",Fixed,Car Payment

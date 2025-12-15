@@ -1,0 +1,11 @@
+Items,Price,Total:
+Rent,"$1,050","$2,853"
+Electricity ,$150,
+Cable,$150,
+Groceries,$300,
+Gas,$200,
+Phone ,$150,
+Car Insurance,$271,
+Cigarettes,$200,
+Car,$382,
+Totals,"$2,853",

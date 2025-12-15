@@ -1,0 +1,299 @@
+/**
+ * === PAYROLL TOOLS — MULTI-STUB EDITION (v3, Enhanced Parsing) ===
+ * Sheet columns:
+ * A Date | B Gross | C Take Home | D Hours | E PaySheet (Drive link)
+ * F Add On Amount | G Stop Count | H Add On Avg | I Commission | J Eff. Hourly
+ * K Date Processed | L Debug (link)
+ *
+ * Requires: Advanced Google Service "Drive" (v2)
+ * Trigger: Installable onEdit
+ */
+
+const TARGET_SHEET_NAME = "Paychecks";
+const COL = { A:1, B:2, C:3, D:4, E:5, F:6, G:7, H:8, I:9, J:10, K:11, L:12 };
+const REQUIRED_COLS = [COL.B, COL.C, COL.D, COL.F, COL.G, COL.H, COL.I, COL.J];
+const HELPER_TEXT = "👆 Enter missing values above";
+const FLASH_MS = 500;
+
+/* ---------------- LOGGING ---------------- */
+function logError_(context, err) {
+  const msg = `❌ [${context}] ${err && err.message ? err.message : err}`;
+  console.error(msg);
+  if (err && err.stack) console.error(err.stack);
+  return msg;
+}
+
+/* ---------------- MAIN onEdit ---------------- */
+function onEdit(e) {
+  if (!e) return;
+  const sh = e.range.getSheet();
+  if (!sh || sh.getName() !== TARGET_SHEET_NAME) return;
+
+  const row = e.range.getRow();
+  const col = e.range.getColumn();
+  const newValue = (e.value || "").toString().trim();
+
+  // Paystub link added
+  if (col === COL.E) {
+    if (newValue === "") {
+      clearRowExceptA_(sh, row);
+      maybeRemoveHelperRow_(sh, row + 1);
+      sh.getRange(row, COL.E).setNote("");
+      return;
+    }
+    if (newValue.includes("drive.google.com")) processPaystubLink_(sh, row, newValue);
+    return;
+  }
+
+  // Helper row edits
+  if (REQUIRED_COLS.includes(col)) {
+    const helperVal = sh.getRange(row + 1, COL.A).getValue();
+    if (helperVal === HELPER_TEXT) handleMissingCellEdited_(sh, row, col);
+  }
+}
+
+/* ---------------- PROCESSING ---------------- */
+function processPaystubLink_(sh, row, url) {
+  const payCell = sh.getRange(row, COL.E);
+  payCell.setNote("🔄 Processing…");
+
+  let text = "", parsed = null;
+  try { text = convertPdfToText(url); }
+  catch (err) { payCell.setNote(logError_("convertPdfToText", err)); return; }
+
+  try { parsed = parsePaystubText(text); }
+  catch (err) { payCell.setNote(logError_("parsePaystubText", err)); return; }
+
+  // Write parsed values
+  writeParsedToRow_(sh, row, parsed);
+
+  // Try to set A (Date) from payDate if present and A is empty
+  if (!sh.getRange(row, COL.A).getValue() && parsed.payDate) {
+    sh.getRange(row, COL.A).setValue(parsed.payDate);
+  }
+
+  // Compute effective hourly if possible and not present
+  const take = num_(sh.getRange(row, COL.C).getValue());
+  const hrs = num_(sh.getRange(row, COL.D).getValue());
+  if (!hasVal_(sh.getRange(row, COL.J).getValue()) && take && hrs) {
+    sh.getRange(row, COL.J).setValue(take / hrs);
+  }
+
+  // Missing fields visual
+  const missing = markMissingRed_(sh, row);
+  if (missing.length > 0) {
+    insertHelperRowBelow_(sh, row);
+    payCell.setNote("⚠️ Missing values — fill red cells above");
+  } else {
+    finalizeRow_(sh, row);
+  }
+
+  // Create debug log doc
+  try {
+    const docTitle = `Paystub_Debug_Row${row}`;
+    const docBody = [
+      "=== PAYSTUB DEBUG LOG ===",
+      `OCR length: ${text.length}`,
+      `Missing fields: ${missing.map(colLetter_).join(", ") || "None"}`,
+      "",
+      "--- Parsed Values ---",
+      JSON.stringify(parsed, null, 2),
+      "",
+      "--- OCR Preview (first 500 chars) ---",
+      text.substring(0, 500)
+    ].join("\n");
+    const debugDocUrl = saveNamedDoc_(docTitle, docBody);
+    sh.getRange(row, COL.L).setValue(debugDocUrl);
+  } catch (err) {
+    logError_("DebugDoc", err);
+  }
+}
+
+/* ---------------- VISUAL FEEDBACK ---------------- */
+function handleMissingCellEdited_(sh, row, col) {
+  const cell = sh.getRange(row, col);
+  const val = cell.getValue();
+  if (val === "" || isNaN(Number(val))) { cell.setBackground("#f8d7da"); return; }
+  cell.setBackground("#fff3cd"); Utilities.sleep(FLASH_MS); cell.setBackground("#d4edda");
+  if (listMissingCols_(sh, row).length === 0) finalizeRow_(sh, row);
+}
+function finalizeRow_(sh, row) {
+  maybeRemoveHelperRow_(sh, row + 1);
+  sh.getRange(row, COL.B, 1, COL.J - COL.B + 1).setBackground(null);
+  const stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd hh:mm a");
+  const done = `✅ Done — ${stamp}`;
+  sh.getRange(row, COL.K).setValue(done);
+  sh.getRange(row, COL.E).setNote(done);
+}
+
+/* ---------------- UTILITIES ---------------- */
+function num_(v){const n=Number(v);return isNaN(n)?null:n;}
+function hasVal_(v){return v!==null&&v!==undefined&&v!==""&&Number(v)!==0;}
+function colLetter_(n){return String.fromCharCode(64+n);}
+function safeSet_(sh,row,col,val){ if(val==null||val===""||Number(val)===0) return; sh.getRange(row,col).setValue(val); }
+function writeParsedToRow_(sh,row,data){
+  safeSet_(sh,row,COL.B,data.gross);
+  safeSet_(sh,row,COL.C,data.takeHome);
+  safeSet_(sh,row,COL.D,data.hours);
+  safeSet_(sh,row,COL.F,data.addonAmount);
+  safeSet_(sh,row,COL.G,data.stopCount);
+  safeSet_(sh,row,COL.H,data.addonAverage);
+  safeSet_(sh,row,COL.I,data.commission);
+  safeSet_(sh,row,COL.J,data.effectiveHourlyRate);
+}
+function clearRowExceptA_(sh,row){ sh.getRange(row,COL.B,1,COL.L-COL.B+1).clearContent().setBackground(null).setNote(""); }
+function insertHelperRowBelow_(sh,row){
+  if(sh.getRange(row+1,COL.A).getValue()===HELPER_TEXT) return;
+  sh.insertRowsAfter(row,1); const helperRow=row+1;
+  const missingCols=listMissingCols_(sh,row);
+  missingCols.forEach(c=>sh.getRange(helperRow,c).setValue(HELPER_TEXT)
+    .setFontWeight("bold").setHorizontalAlignment("center").setBackground("#eeeeee"));
+  sh.getRange(helperRow,COL.A).setValue(HELPER_TEXT); sh.setRowHeight(helperRow,25);
+}
+function maybeRemoveHelperRow_(sh,helperRow){
+  if(helperRow>sh.getMaxRows()) return;
+  const val=sh.getRange(helperRow,COL.A).getValue();
+  if(val===HELPER_TEXT) sh.deleteRow(helperRow);
+}
+function markMissingRed_(sh,row){
+  const missing=listMissingCols_(sh,row);
+  missing.forEach(c=>sh.getRange(row,c).setBackground("#f8d7da"));
+  return missing;
+}
+function listMissingCols_(sh,row){
+  return REQUIRED_COLS.filter(c=>{
+    const v=sh.getRange(row,c).getValue();
+    return v===""||v===null;
+  });
+}
+
+/* ---------------- DRIVE OCR (v2) ---------------- */
+function convertPdfToText(urlOrId){
+  try{
+    const fileId=extractFileId_(urlOrId);
+    const pdfBlob=fetchDrivePdfBlobById_(fileId);
+    pdfBlob.setContentType("application/pdf");
+    const resource={ title:"OCR_Forced_"+Date.now() };
+    const options={ convert:true, ocr:true, ocrLanguage:"en" };
+    const created=Drive.Files.insert(resource,pdfBlob,options);
+    Utilities.sleep(2500);
+    const doc=DocumentApp.openById(created.id);
+    const text=doc.getBody().getText();
+    try{Drive.Files.remove(created.id);}catch(_){ }
+    if(!text||!text.trim()) throw new Error("Empty OCR result");
+    return cleanText_(text);
+  }catch(err){ throw new Error("OCR failed: "+err.message); }
+}
+function fetchDrivePdfBlobById_(fileId){
+  const url="https://drive.google.com/uc?export=download&id="+encodeURIComponent(fileId);
+  const resp=UrlFetchApp.fetch(url,{muteHttpExceptions:true,followRedirects:true});
+  if(resp.getResponseCode()!==200) throw new Error("Drive fetch failed (permissions)");
+  const blob=resp.getBlob(); blob.setName("paystub.pdf"); return blob;
+}
+function extractFileId_(url){
+  const m=(url||"").toString().match(/[a-zA-Z0-9_-]{25,}/);
+  if(m) return m[0];
+  throw new Error("Invalid Drive URL");
+}
+function cleanText_(text){
+  return text.replace(/\s{2,}/g," ")
+             .replace(/[|]/g,"I")
+             .replace(/(\d)\s+(\d{2})(?!\d)/g,"$1.$2")
+             .replace(/[‘’'"]/g,"")
+             .replace(/[{}]/g,"")
+             .replace(/\$\s+/g,"$")
+             .trim();
+}
+
+/* ---------------- DEBUG DOC ---------------- */
+function saveNamedDoc_(name,text){
+  const doc=DocumentApp.create(name);
+  doc.getBody().setText(text); doc.saveAndClose();
+  return doc.getUrl();
+}
+
+/* ---------------- PARSER (IMPROVED) ---------------- */
+function parsePaystubText(text) {
+  const data = {
+    gross:null, takeHome:null, hours:null,
+    addonAmount:null, stopCount:null,
+    addonAverage:null, commission:null,
+    effectiveHourlyRate:null,
+    periodStart:null, periodEnd:null, payDate:null
+  };
+  const logs = [];
+
+  // Normalize
+  text = text.replace(/\s+/g," ").replace(/[^\w\s\.\$\:\/-]/g," ").trim();
+  logs.push("Normalized length: " + text.length);
+
+  // Dates
+  let m=text.match(/Period\s*Beginning[:\s]*([0-9/]+)/i);
+  if(m) data.periodStart=m[1];
+  m=text.match(/Period\s*Ending[:\s]*([0-9/]+)/i);
+  if(m) data.periodEnd=m[1];
+  m=text.match(/Pay\s*Date[:\s]*([0-9/]+)/i);
+  if(m) data.payDate=m[1];
+
+  // Basic values
+  m=text.match(/Gross\s*Pay\s*\$?\s*([\d,]+\.\d{2})/i);
+  if(m) { data.gross=parseFloat(m[1].replace(/,/g,"")); logs.push(`✅ Gross Pay → "${m[0]}"`); }
+
+  m=text.match(/(?:Net\s*Pay|Net\s*Amount|Checking\s*1\s*Net\s*Check)[^$]{0,60}\$?\s*([\d,]+\.\d{2})/i);
+  if(m) { data.takeHome=parseFloat(m[1].replace(/,/g,"")); logs.push(`✅ Take Home → "${m[0]}"`); }
+
+  m=text.match(/Core\s+(?:Hour|Hourly)[^\d]{0,6}(\d{1,3})[\s\.](\d{2})/i);
+  if(m) { data.hours=parseFloat(`${m[1]}.${m[2]}`); logs.push(`✅ Hours → "${m[0]}"`); }
+
+  m=text.match(/Core\s+Commiss[^\d]{0,6}(\d{1,4})[\s\.](\d{2})/i);
+  if(m) { data.commission=parseFloat(`${m[1]}.${m[2]}`); logs.push(`✅ Commission → "${m[0]}"`); }
+
+  // Addon block
+  const addonBlock=text.match(/Addon\s*Amount[^A-Za-z]{0,40}Effective\s*Hourly\s*Rate/i);
+  if(addonBlock){
+    const nums=(addonBlock[0].match(/\d{1,4}\s+\d{2}/g)||[])
+      .map(s=>parseFloat(s.replace(/\s+/,".")));
+    if(nums.length>=4){
+      [data.addonAmount,data.stopCount,data.addonAverage,data.effectiveHourlyRate]=nums;
+    }
+    logs.push("✅ Addon block found, numbers: "+JSON.stringify(nums));
+  }else{
+    // Try individual regexes if no block found
+    m=text.match(/Addon\s*Amount[^0-9]{0,5}(\d{1,4})\s+(\d{2})/i);
+    if(m) data.addonAmount=parseFloat(`${m[1]}.${m[2]}`);
+
+    m=text.match(/Stop\s*Count[^0-9]{0,5}(\d{1,3})/i);
+    if(m) data.stopCount=parseInt(m[1]);
+
+    m=text.match(/Addon\s*Average[^0-9]{0,5}(\d{1,3})\s+(\d{2})/i);
+    if(m) data.addonAverage=parseFloat(`${m[1]}.${m[2]}`);
+
+    m=text.match(/Effective\s*Hourly\s*Rate[^0-9]{0,5}(\d{1,3})\s+(\d{2})/i);
+    if(m) data.effectiveHourlyRate=parseFloat(`${m[1]}.${m[2]}`);
+  }
+
+  data.debugLog = logs.join("\n");
+  return data;
+}
+
+/* ---------------- TEST FUNCTIONS ---------------- */
+const TEST_DRIVE_LINK = "https://drive.google.com/file/d/1g5GmRobo6Ampie5DCy-AGPV1lJxanZ5D/view?usp=drivesdk";
+
+function testParsing(){
+  const url=TEST_DRIVE_LINK;
+  const text=convertPdfToText(url);
+  const parsed=parsePaystubText(text);
+  console.log("=== Parsed Fields ===");
+  console.log(JSON.stringify(parsed,null,2));
+}
+
+/* ---------------- REAUTHORIZE + HEALTH CHECK ---------------- */
+function reauthorizeScript(){
+  Logger.log("Running reauthorization check...");
+  try{Drive.Files.list({maxResults:1});}catch(_){}
+  try{DocumentApp.create("Reauth Test").saveAndClose();}catch(_){}
+  try{UrlFetchApp.fetch("https://www.google.com");}catch(_){}
+  try{SpreadsheetApp.getActiveSpreadsheet().getName();}catch(_){}
+  try{ScriptApp.getProjectTriggers();}catch(_){}
+  Logger.log("✅ Reauthorization complete — Review permissions if prompted.");
+}
