@@ -26,6 +26,11 @@ It includes:
 📄 **Dashboard PDF Preview**  
 👉 [Stanley Steemer Work Performance.PDF](./Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
 
+<!-- ===================== -->
+<!--        PREVIEW        -->
+<!-- ===================== -->
+![Preview](./StanleySteemerDashboard_pt3.png)
+
 ---
 
 ## 🧩 Features
