@@ -113,6 +113,9 @@ Powers dashboards:
 <!-- ===================== -->
 ![Banner](./assets_banner.png)
 
+📄 **Excel Dashboard**  
+👉 [Stanley Steemer Work Performance.xlsx](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
+
 ## 🖼 Dashboard Visuals
 
 | Metric | File |
