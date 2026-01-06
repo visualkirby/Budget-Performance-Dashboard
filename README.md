@@ -24,7 +24,7 @@ It includes:
 - A fully structured data layer designed for **SQL warehousing & BI tools**
 
 📄 **Dashboard PDF Preview**  
-👉 [Stanley Steemer Work Performance.PDF](./Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
+👉 [Stanley Steemer Work Performance.PDF](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
 
 <!-- ===================== -->
 <!--        PREVIEW        -->
