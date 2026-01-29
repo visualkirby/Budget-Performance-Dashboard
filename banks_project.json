@@ -1,0 +1,75 @@
+{
+  "project_id": "PROJ_BUDGET_WORK_PERFORMANCE_DASHBOARD",
+  "group_id": "PROJECT_GROUP_ANALYTICS",
+
+  "title": "Budget & Work Performance Dashboard",
+  "short_summary": "Automated personal finance and work performance dashboard with KPI tracking",
+  "summary": "A dashboard-centric analytics project designed to track income, expenses, and work performance KPIs in a single interactive view. Built primarily in Google Sheets with automation support, the dashboard converts raw pay and performance data into actionable insights such as effective hourly rate, add-on performance, time per stop, and weekly scorecards.",
+
+  "role_scope": "base|operations|finance",
+
+  "skills": [
+    "Google Sheets",
+    "Excel",
+    "KPI Development",
+    "Dashboard Design",
+    "Data Analysis",
+    "Automation",
+    "Performance Tracking"
+  ],
+
+  "domains": [
+    "personal_finance_analytics",
+    "work_performance_tracking",
+    "kpi_dashboarding",
+    "operational_efficiency"
+  ],
+
+  "tags": [
+    "dashboard",
+    "kpi_tracking",
+    "google_sheets",
+    "automation",
+    "performance_metrics",
+    "personal_finance"
+  ],
+
+  "datasets": [],
+
+  "components": [
+    {
+      "component_id": "COMP_BUDGET_DASHBOARD",
+      "name": "Interactive Google Sheets Dashboard",
+      "component_type": "analytics_layer",
+      "deliverable_type": "dashboard",
+      "objective": "Provide a real-time, interactive view of financial and work performance KPIs",
+      "business_value": "Improves visibility into income trends, productivity, and efficiency while reducing manual tracking effort",
+      "files": [],
+      "tools": [
+        { "tool_label": "Google Sheets", "tool_keyword": "google_sheets" },
+        { "tool_label": "Excel", "tool_keyword": "excel" }
+      ],
+      "skills": [
+        { "skill_keyword": "dashboard_design", "weight": 0.4 },
+        { "skill_keyword": "kpi_development", "weight": 0.4 },
+        { "skill_keyword": "data_analysis", "weight": 0.2 }
+      ]
+    },
+    {
+      "component_id": "COMP_BUDGET_AUTOMATION",
+      "name": "Google Apps Script Automation",
+      "component_type": "analytics_layer",
+      "deliverable_type": "automation",
+      "objective": "Automate data ingestion, normalization, and KPI refreshes",
+      "business_value": "Eliminates manual updates and ensures consistent, reliable performance tracking",
+      "files": [],
+      "tools": [
+        { "tool_label": "Google Apps Script", "tool_keyword": "apps_script" }
+      ],
+      "skills": [
+        { "skill_keyword": "automation", "weight": 0.5 },
+        { "skill_keyword": "data_processing", "weight": 0.5 }
+      ]
+    }
+  ]
+}
