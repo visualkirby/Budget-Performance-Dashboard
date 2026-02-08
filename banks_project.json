@@ -3,10 +3,18 @@
   "group_id": "PROJECT_GROUP_ANALYTICS",
 
   "title": "Budget & Work Performance Dashboard",
-  "short_summary": "Automated personal finance and work performance dashboard with KPI tracking",
-  "summary": "A dashboard-centric analytics project designed to track income, expenses, and work performance KPIs in a single interactive view. Built primarily in Google Sheets with automation support, the dashboard converts raw pay and performance data into actionable insights such as effective hourly rate, add-on performance, time per stop, and weekly scorecards.",
+  "short_summary": "Automated personal finance and work performance analytics system with KPI tracking",
+  "summary": "An end-to-end personal finance and work performance analytics system built with Google Sheets and Google Apps Script. The project ingests raw paystub data, applies automated KPI logic and forecasting models, and delivers dashboards, reports, and structured exports for BI and SQL-based analysis.",
 
   "role_scope": "base|operations|finance",
+
+  "roles": [
+    "Data Analyst",
+    "Operations Analyst",
+    "Financial Analyst",
+    "BI Engineer",
+    "Business Analyst"
+  ],
 
   "skills": [
     "Google Sheets",
@@ -15,63 +23,180 @@
     "Dashboard Design",
     "Data Analysis",
     "Automation",
+    "Forecasting",
+    "ETL Pipelines",
     "Performance Tracking"
   ],
 
   "repo_link": "https://github.com/visualkirby/Budget-Performance-Dashboard",
-  
+
   "domains": [
     "personal_finance_analytics",
     "work_performance_tracking",
     "kpi_dashboarding",
-    "operational_efficiency"
+    "operational_efficiency",
+    "financial_forecasting"
   ],
 
   "tags": [
     "dashboard",
-    "kpi_tracking",
+    "etl",
+    "kpi_engine",
     "google_sheets",
     "automation",
-    "performance_metrics",
-    "personal_finance"
+    "finance_analytics",
+    "performance_metrics"
   ],
 
-  "datasets": [],
+  "datasets": [
+    {
+      "dataset_key": "pay_and_budget_exports",
+      "dataset_value": "Raw, cleaned, and derived pay and budget datasets",
+      "dataset_link": "https://github.com/visualkirby/Budget-Performance-Dashboard"
+    }
+  ],
 
   "components": [
+
     {
-      "component_id": "COMP_BUDGET_DASHBOARD",
-      "name": "Interactive Google Sheets Dashboard",
-      "component_type": "analytics_layer",
-      "deliverable_type": "dashboard",
-      "objective": "Provide a real-time, interactive view of financial and work performance KPIs",
-      "business_value": "Improves visibility into income trends, productivity, and efficiency while reducing manual tracking effort",
-      "files": [],
+      "component_id": "COMP_BUDGET_RAW_INPUTS",
+      "name": "Raw Pay & Budget Inputs",
+      "component_type": "extract_layer",
+      "deliverable_type": "raw_datasets",
+
+      "objective": "Capture and standardize weekly paystub, budget, and performance inputs for downstream processing.",
+      "business_value": "Establishes reliable data lineage and prevents manual re-entry errors in financial and performance tracking.",
+
+      "component_link": "https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Raw_Pay.csv",
+
+      "files": [
+        "Raw_Pay.csv",
+        "Paychecks.csv",
+        "Budget.csv",
+        "Budget_Plan.csv"
+      ],
+
+      "tools": [
+        { "tool_label": "Google Sheets", "tool_keyword": "google_sheets" }
+      ],
+
+      "skills": [
+        { "skill_label": "Data Sourcing", "skill_keyword": "data_sourcing", "weight": 0.4 },
+        { "skill_label": "Data Ingestion", "skill_keyword": "data_ingestion", "weight": 0.6 }
+      ]
+    },
+
+    {
+      "component_id": "COMP_BUDGET_KPI_ENGINE",
+      "name": "KPI & Forecasting Engine",
+      "component_type": "transform_layer",
+      "deliverable_type": "cleaned_analytical_dataset",
+
+      "objective": "Transform raw pay and budget inputs into validated KPIs, rolling averages, and forecast metrics.",
+      "business_value": "Enables consistent performance measurement and forward-looking financial planning through automated calculations.",
+
+      "component_link": "https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Derived.csv",
+
+      "files": [
+        "Derived.csv",
+        "Scorecard.csv",
+        "Income.csv"
+      ],
+
       "tools": [
         { "tool_label": "Google Sheets", "tool_keyword": "google_sheets" },
         { "tool_label": "Excel", "tool_keyword": "excel" }
       ],
+
       "skills": [
-        { "skill_keyword": "dashboard_design", "weight": 0.4 },
-        { "skill_keyword": "kpi_development", "weight": 0.4 },
-        { "skill_keyword": "data_analysis", "weight": 0.2 }
+        { "skill_label": "Data Transformation", "skill_keyword": "data_transformation", "weight": 0.4 },
+        { "skill_label": "KPI Development", "skill_keyword": "kpi_development", "weight": 0.4 },
+        { "skill_label": "Forecasting", "skill_keyword": "forecasting", "weight": 0.2 }
       ]
     },
+
+    {
+      "component_id": "COMP_BUDGET_DASHBOARD",
+      "name": "Interactive Performance Dashboard",
+      "component_type": "data_visualization",
+      "deliverable_type": "dashboard",
+
+      "objective": "Visualize income, productivity, and efficiency trends through interactive scorecards and charts.",
+      "business_value": "Provides real-time visibility into financial and operational performance, enabling faster course correction.",
+
+      "component_link": "https://github.com/visualkirby/Budget-Performance-Dashboard",
+
+      "files": [
+        "Stanley Steemer Work Performance.xlsx"
+      ],
+
+      "tools": [
+        { "tool_label": "Google Sheets", "tool_keyword": "google_sheets" },
+        { "tool_label": "Excel", "tool_keyword": "excel" }
+      ],
+
+      "skills": [
+        { "skill_label": "Dashboard Design", "skill_keyword": "dashboard_design", "weight": 0.4 },
+        { "skill_label": "Data Visualization", "skill_keyword": "data_visualization", "weight": 0.4 },
+        { "skill_label": "Data Analysis", "skill_keyword": "data_analysis", "weight": 0.2 }
+      ]
+    },
+
+    {
+      "component_id": "COMP_BUDGET_REPORTING",
+      "name": "Executive Reports & Visual Exports",
+      "component_type": "executive_communication",
+      "deliverable_type": "report",
+
+      "objective": "Package dashboard outputs into shareable PDF and image formats for review and documentation.",
+      "business_value": "Supports offline review, performance discussions, and portfolio presentation with standardized reporting artifacts.",
+
+      "component_link": "https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF",
+
+      "files": [
+        "Stanley Steemer Work Performance.PDF",
+        "Gross_vs_Take_Home.png",
+        "Monthly_Net_Income.png",
+        "Monthly_Forecast.png",
+        "Weekly_Scorecard.png"
+      ],
+
+      "tools": [
+        { "tool_label": "PDF", "tool_keyword": "pdf" },
+        { "tool_label": "PNG", "tool_keyword": "png" }
+      ],
+
+      "skills": [
+        { "skill_label": "Executive Communication", "skill_keyword": "executive_communication", "weight": 0.6 },
+        { "skill_label": "Data Storytelling", "skill_keyword": "data_storytelling", "weight": 0.4 }
+      ]
+    },
+
     {
       "component_id": "COMP_BUDGET_AUTOMATION",
-      "name": "Google Apps Script Automation",
-      "component_type": "analytics_layer",
+      "name": "Apps Script Automation Pipeline",
+      "component_type": "automation",
       "deliverable_type": "automation",
-      "objective": "Automate data ingestion, normalization, and KPI refreshes",
-      "business_value": "Eliminates manual updates and ensures consistent, reliable performance tracking",
-      "files": [],
+
+      "objective": "Automate OCR parsing, data validation, logging, and weekly refresh workflows using Google Apps Script.",
+      "business_value": "Eliminates manual processing errors and ensures timely, consistent dashboard updates.",
+
+      "component_link": "https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/apps_script%20(1).txt",
+
+      "files": [
+        "apps_script (1).txt",
+        "FORMULA_EXPORT.csv"
+      ],
+
       "tools": [
         { "tool_label": "Google Apps Script", "tool_keyword": "apps_script" }
       ],
+
       "skills": [
-        { "skill_keyword": "automation", "weight": 0.5 },
-        { "skill_keyword": "data_processing", "weight": 0.5 }
+        { "skill_label": "Automation", "skill_keyword": "automation", "weight": 0.5 },
+        { "skill_label": "Data Processing", "skill_keyword": "data_processing", "weight": 0.5 }
       ]
     }
+
   ]
 }
