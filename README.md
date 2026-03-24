@@ -6,13 +6,13 @@
 # 📊 Budget & Work Performance Dashboard  
 *A full analytics system built with Google Sheets, Google Apps Script, and automated KPI logic.*
 
-This project transforms raw weekly paystub data into a complete **financial + work-performance dashboard**, including forecasting, KPI scoring, visual analytics, and structured data pipelines ready for **SQL, Tableau, Power BI, or Python**.
+This project transforms raw weekly paystub data into a complete **financial + operations-performance dashboard**, including forecasting, KPI scoring, visual analytics, and structured data pipelines ready for **SQL, Looker Studio, Tableau, Power BI, or Python**.
 
 ---
 
 ## 📌 Project Overview
 
-This dashboard combines **personal income tracking**, **monthly budgeting**, and **Stanley Steemer work performance metrics** into one unified analytics system.
+This dashboard combines **personal income tracking**, **monthly budgeting**, and **Operations performance metrics** into one unified analytics system.
 
 It includes:
 
@@ -23,13 +23,23 @@ It includes:
 - Trend charts for income, hours, add-ons, and commissions  
 - A fully structured data layer designed for **SQL warehousing & BI tools**
 
-📄 **Dashboard PDF Preview**  
-👉 [Stanley Steemer Work Performance.PDF](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
+<!-- ===================== -->
+<!--        PREVIEW        -->
+<!-- ===================== -->
+![Preview](./Looker-Studio_pg1.png)
 
 <!-- ===================== -->
 <!--        PREVIEW        -->
 <!-- ===================== -->
-![Preview](./StanleySteemerDashboard_pt3.png)
+![Preview](./Looker-Studio_pg2.png)
+
+<!-- ===================== -->
+<!--        PREVIEW        -->
+<!-- ===================== -->
+![Preview](./Looker-Studio_pg3.png)
+
+📄 **Looker Studio Dashboard PDF Preview**  
+👉 [Operations Performance & KPI Dashboard.PDF](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Operations_Performance_%26_KPI_Dashboard.pdf)
 
 ---
 
@@ -108,10 +118,15 @@ Powers dashboards:
 
 ---
 
+📄 **Google Sheets Dashboard PDF Preview**  
+👉 [Stanley Steemer Work Performance.PDF](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.PDF)
+
 <!-- ===================== -->
-<!--        BANNER         -->
+<!--        PREVIEW        -->
 <!-- ===================== -->
-![Banner](./assets_banner.png)
+![Preview](./StanleySteemerDashboard_pt3.png)
+
+---
 
 📄 **Excel Dashboard**  
 👉 [Stanley Steemer Work Performance.xlsx](https://github.com/visualkirby/Budget-Performance-Dashboard/blob/main/Stanley%20Steemer%20Work%20Performance.xlsx)
