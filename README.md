@@ -8,7 +8,7 @@
 
 This project transforms raw weekly paystub data into a complete **financial + operations-performance dashboard**, including forecasting, KPI scoring, visual analytics, and structured data pipelines ready for **SQL, Looker Studio, Tableau, Power BI, or Python**.
 
-[![Looker Studio Dashboard](https://img.shields.io/badge/🧮_Operations_Performance_Looker_Studio_Dashboard-6700B0)](https://lookerstudio.google.com/reporting/832f162a-50e7-4a9e-bbbb-7acb202bf1e3)
+[![Looker Studio Dashboard](https://img.shields.io/badge/🧮_Operations_Performance_Looker_Studio_Dashboard-03a6a5)](https://lookerstudio.google.com/reporting/832f162a-50e7-4a9e-bbbb-7acb202bf1e3)
 
 ---
 
@@ -200,3 +200,17 @@ Budget-Performance-Dashboard/
 └── scripts/
     └── FORMULA_EXPORT.csv
     ├──  apps_script.txt
+```
+
+---
+
+## Author
+
+**Sawandi Kirby**
+
+Data Analytics & Business Intelligence  
+Benchline Analytics — Freelance data consultancy focused on K-12 schools and medical practices.
+
+- GitHub: https://github.com/visualkirby
+- LinkedIn: https://linkedin.com/in/sawandi-kirby
+- Kaggle: https://kaggle.com/sawandikirby
